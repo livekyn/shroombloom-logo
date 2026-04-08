@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShroomBloom - FAQ's</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <script>
+    function toggleFAQ(element) {
+      const question = element;
+      const answer = element.nextElementSibling;
+
+      // Close other open FAQs
+      document.querySelectorAll('.faq-question').forEach(q => {
+        if (q !== question) {
+          q.classList.remove('active');
+          q.nextElementSibling.classList.remove('active');
+        }
+      });
+
+      // Toggle current FAQ
+      question.classList.toggle('active');
+      answer.classList.toggle('active');
+    }
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      background: #0a0a0a;
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.5rem;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 100%);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      max-width: 700px;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(90deg, #E91E8C, #AAFF00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header p {
+      color: #aaaaaa;
+      font-size: 1rem;
+      font-weight: 300;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      margin-bottom: 2rem;
+      background: rgba(233, 30, 140, 0.15);
+      border: 1px solid rgba(233, 30, 140, 0.3);
+      color: #E91E8C;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .back-button:hover {
+      background: rgba(233, 30, 140, 0.25);
+      transform: translateX(-4px);
+    }
+
+    .faq-container {
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .category-header {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #AAFF00;
+      margin-top: 2.5rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid rgba(170, 255, 0, 0.3);
+    }
+
+    .category-header:first-of-type {
+      margin-top: 0;
+    }
+
+    .faq-item {
+      margin-bottom: 1.5rem;
+      animation: slideUp 0.6s ease both;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .faq-item:nth-child(1) { animation-delay: 0.05s; }
+    .faq-item:nth-child(2) { animation-delay: 0.1s; }
+    .faq-item:nth-child(3) { animation-delay: 0.15s; }
+    .faq-item:nth-child(4) { animation-delay: 0.2s; }
+    .faq-item:nth-child(5) { animation-delay: 0.25s; }
+
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem;
+      background: #E91E8C;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+
+    .faq-question:hover {
+      background: #d4167a;
+      box-shadow: 0 0 20px rgba(233, 30, 140, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .faq-question.active {
+      background: #d4167a;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .arrow {
+      font-size: 1.3rem;
+      transition: transform 0.3s ease;
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .faq-question.active .arrow {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      background: rgba(233, 30, 140, 0.1);
+      border: 1px solid rgba(233, 30, 140, 0.3);
+      border-top: none;
+      transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .faq-answer.active {
+      max-height: 2000px;
+    }
+
+    .faq-answer-content {
+      padding: 1.5rem;
+      color: #dddddd;
+      line-height: 1.8;
+    }
+
+    .faq-answer-content p {
+      margin-bottom: 1rem;
+    }
+
+    .faq-answer-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .faq-answer-content strong {
+      color: #E91E8C;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      text-align: center;
+      color: #666666;
+      font-size: 0.85rem;
+      max-width: 700px;
+    }
+
+    .footer a {
+      color: #E91E8C;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer a:hover {
+      color: #AAFF00;
+    }
+
+    .question-count {
+      text-align: center;
+      color: #666666;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-button">
+      <span>←</span>
+      <span>Back to Hub</span>
+    </a>
+
+    <div class="header">
+      <h1>Frequently Asked Questions</h1>
+      <p>Everything you need to know about growing with ShroomBloom</p>
+    </div>
+
+    <div class="question-count">110+ questions to help you succeed</div>
+
+    <div class="faq-container">
+      <!-- SETUP & GETTING STARTED -->
+      <div class="category-header">Setup & Getting Started</div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What's included in the kit and what do I need to prepare?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Your ShroomBloom kit includes everything needed for complete cultivation: a 4LB premium grow bag with our proprietary fast-colonizing grain blend, custom grow box chamber, quick-start instruction guide, empty spore syringe (use the exclusive discount code inside for culture), 2x rubber gloves, 2x alcohol prep wipes, 2x bag sealers, sanitizer wipe, and a professional-grade 0.2-micron filter built into every bag for optimal air exchange. The bag creates its own self-regulating microclimate — no humidifiers, tents, or equipment required. You don't need to prepare anything special. Just ensure you have clean hands and a space at room temperature. No sterilization needed.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Do I need any special equipment or supplies to get started?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Absolutely not — that's the beauty of ShroomBloom. No tents, no tubs, no humidifiers needed. Your kit's self-regulating microclimate and professional 0.2-micron filter handle everything. The grow bag creates optimal conditions from inoculation to harvest completely on its own. You literally just inoculate, seal, and let it grow. A basic thermometer is optional for monitoring room temperature, but the kit doesn't require it to succeed. Beyond clean hands, you have everything needed inside the box.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How do I set up my kit for the first time?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Setup takes just 5 minutes. (1) Wash your hands thoroughly and sanitize with the included alcohol wipe. Put on the rubber gloves. (2) Use another alcohol wipe to clean the self-healing injection port on the bag — this sealed opening is ready to receive your spore or liquid culture syringe. (3) Prepare your spore or culture syringe according to your genetics supplier's instructions. (4) Inject your prepared culture through the self-healing port into the grain. (5) Seal the injection port area with the included bag sealers. That's it. Place your bag on a shelf at room temperature and let it grow. The proprietary grain blend and 0.2-micron filter handle everything from colonization through fruiting. Within days, you'll see active mycelium colonizing the grain.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Can I start growing immediately or do I need to wait?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Yes, you can start immediately. Once you receive your kit and it's at room temperature, you're ready to begin. Some growers let kits acclimate for a few hours after shipping, but there's no waiting period required. The mycelium is already established — you're just triggering the fruiting phase.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What if my kit arrives damaged or broken?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Contact our customer support immediately with photos of the damage. If the substrate block itself is intact and there's no visible contamination (green, black, or orange patches), you can often still use it by carefully removing it from the box and growing directly from the bag. If contamination is present or the block is severely compromised, we'll send a replacement. Always reach out within 48 hours of receiving a damaged kit.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Should I soak the substrate before starting?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>No, soaking is not necessary for initial fruiting. Your kit arrives fully hydrated and ready to fruit. However, between flushes, soaking (dunking) the block in clean water for 12 hours can help reinitiate the fruiting cycle and improve subsequent yields. Make sure that the block is in need of moisture before soaking, this is usually an extreme step but can be necessary. Reach out anytime if you have any questions regarding soaking.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Can I store my kit before using it? How long will it last?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Yes, you can store your kit in a cool, dark place (like a refrigerator) for up to 4-6 weeks. The goal of the kit is to use it as quickly as possible as contamination potential is everywhere and the longer you wait, the less viable the bag becomes for your mycelium and starts to welcome unwanted contamination risks.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What's the difference between mycelium and mold?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Mycelium is the white, thread-like network of your mushroom organism — it's healthy and necessary. It appears rope-like, dense, and uniform. Contaminating molds appear as distinct patches of green, black, blue, orange, or pink colors. Healthy mycelium may also show some browning or yellowing (metabolites), which is completely normal and indicates the mycelium is actively working. When in doubt, mold will have a distinctly different color than white.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENVIRONMENTAL CONDITIONS -->
+      <div class="category-header">Environmental Conditions</div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What temperature should I maintain?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Room temperature. That's it. ShroomBloom is engineered for standard household conditions: 60-75°F (15-24°C) is ideal, but anywhere 55-80°F works fine. Unlike traditional kits that are finicky about temperature swings, ShroomBloom's proprietary design tolerates normal household temperature fluctuations. Most people just leave their kit on a shelf and forget about it. If your room is generally comfortable for people, it's comfortable for your mushrooms. You generally don't need a heat mat, climate control, or temperature monitoring. Just avoid extreme heat sources (radiators, direct sunlight) and extreme cold (unheated basements). If your space feels normal to you, it's perfect for growing.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How much humidity does my kit need?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>You don't need to manage humidity at all. The bag does it automatically. ShroomBloom's 0.2-micron professional-grade filter and sealed chamber create and maintain perfect humidity throughout the entire grow cycle — from inoculation through harvest. No humidity tents. No humidifiers. No monitoring. The self-regulating microclimate works in dry climates, humid climates, and normal climates equally well. If you live in an extremely dry area (constant desert conditions), the bag still handles it through the filter's optimized design. This is why you don't need any equipment. The kit is literally designed to work anywhere in any normal home condition. The only recommendation that we have is that if you are in an extremely dry climate, opting for a small humidifier to keep the air exchange nice and humid will increase your chances of success.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Does my kit need light to grow mushrooms?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>No, mushrooms don't require light to grow — this is a common misconception. However, some indirect ambient light helps orient mushroom growth properly (they grow toward light). A room with normal household lighting or a window with indirect sunlight is perfect. Avoid direct sunlight, which can dry out the substrate and stress the mycelium. A dimly lit closet will work, but mushrooms may grow in unusual directions seeking light.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How much air exchange/ventilation is needed?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Fresh air exchange is critical for pinning and fruiting — arguably more important than humidity or light. Your kit needs fresh air 2-4 times daily. This can be as simple as fanning the kit for 30 seconds or placing it in a room with good natural air circulation. Without adequate fresh air, CO2 accumulates and mushrooms become stunted, stringy, or fail to fruit properly.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Can I grow mushrooms in a dark closet?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Yes, but with caveats. Mycelium love to colonize in a nice dark environment. Mushrooms when fruiting will grow in darkness, but they may orient poorly or grow in unexpected directions. A dark closet works fine if you have adequate humidity and air exchange. If possible, even indirect light (cracked door, small light source) is preferable. The key is ensuring the closet has some air circulation — a completely sealed, dark space will limit CO2 exchange.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Is indirect sunlight okay or do I need direct sun?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Indirect sunlight is perfect. Direct sunlight should be avoided — it dries out the substrate rapidly and can overheat the kit. A window with indirect light, or a room lit by ambient sunlight, provides ideal conditions. The key principle: enough light to see the kit clearly, but no direct rays.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What happens if my room temperature is too cold?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>If your room is consistently below 60°F, fruiting will be significantly delayed. Colonization and fruiting both slow dramatically in cold conditions. If your space is 50-60°F, expect 2-3x longer growth times. Below 50°F, most strains will barely fruit or stall entirely. Solution: move the kit to a warmer location, use a heat mat (set to 65-70°F), or wait for warmer seasons. If your heat mat is directly on your kit, be careful not to dry it out. Placing the heat mat under your box and your kit inside your grow chamber box is a better setup for a buffer between the two.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What happens if my room temperature is too hot?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Temperatures above 75-80°F can stress mycelium and increase contamination risk. Most strains tolerate up to 80°F for short periods, but sustained heat accelerates substrate degradation and makes mold contamination more likely. If your space runs hot, increase ventilation, move the kit away from heat sources, or grow during cooler seasons. Some strains are more heat-tolerant than others.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Can I use a humidifier to help with humidity?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Absolutely. A humidifier is one of the best investments for home cultivation, especially in dry climates. Place it in the same room as your kit and maintain 80-95% humidity. Ultrasonic cool-mist humidifiers work well and are affordable. Just ensure you're not creating a water-logged environment — the goal is humid air, not soaking substrate.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Should I use a fan for air circulation?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Yes, but carefully. A small fan on low speed, positioned to gently circulate air around (not directly on) your kit, is beneficial for CO2 exchange. Never blow a fan directly at your kit — this causes rapid drying and mushroom deformation. The goal is gentle air movement throughout the room, not a direct breeze. Many growers simply crack a door or open a window occasionally for the same effect.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- GROWTH & TIMELINE -->
+      <div class="category-header">Growth & Timeline</div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Is there liquid/water pooling in my bag - is that normal?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Yes, completely normal and a sign of a healthy, thriving kit. This liquid is called "metabolites" — compounds secreted by active mycelium as a natural defense against contaminants. The 0.2-micron filter in your bag is specifically designed to manage this moisture automatically. You'll see clear or slightly cloudy liquid pooling — that's the kit doing its job. Don't drain it or worry about it. The self-regulating microclimate keeps everything in perfect balance. Pooling indicates your mycelium is thriving and actively defending itself. This is a sign you're on track for a great harvest.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How long until I see the first mushrooms?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>ShroomBloom kits are engineered for speed. You'll see active mycelium colonization in the grain within **days** — not weeks. Most growers see visible white mycelium growth by day 3-5. From there, pinning (tiny mushroom primordia) typically appears 7-14 days after inoculation, and harvest-ready mushrooms are ready 5-10 days after pinning. Total time from inoculation to first harvest is usually 4-6 weeks. The proprietary grain blend and BloomBoost nutrient formula accelerate the natural growth cycle dramatically. You get fast, visible proof of progress right from the start. All of this is contingent on the spores/culture that you use. Some mushrooms grow faster than others and liquid culture is ALWAYS faster than spores.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Why is my kit taking longer than expected to fruit?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>The most common causes are: (1) insufficient humidity (below 80%), (2) inadequate fresh air exchange, (3) temperature too cold (below 60°F), (4) insufficient light for proper orientation, or (5) contamination (visible green/black patches). Verify humidity with a hygrometer, ensure you're fanning or providing fresh air 2-4x daily, and check temperature. If none of these are issues, some strains are simply slower-fruiting and may take 2-3 weeks.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Why aren't my mushrooms growing?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>This typically indicates one of four issues: (1) mycelium is not fully colonized or is resting between flushes, (2) environmental conditions are suboptimal (check humidity, temp, air exchange), (3) contamination has prevented fruiting, or (4) the kit is exhausted after multiple flushes. Verify the substrate is white and firm (ready to fruit), not yellow or broken down. Check all environmental parameters. If everything looks good, sometimes waiting another week triggers fruiting.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Can mushrooms grow overnight?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Yes. Some fast-growing strains, particularly oyster varieties, can visibly double or triple in size within 24 hours once pinning begins. This is completely normal and actually indicates excellent conditions. This rapid growth is why daily monitoring is important — you don't want to miss the optimal harvest window.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>My mushrooms are growing really fast - is that normal?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Absolutely. Fast growth indicates excellent environmental conditions — proper humidity, temperature, and air exchange. This is ideal and actually desired. Just ensure you're monitoring closely so you don't miss the harvest window. Rapid growth is a sign you're doing everything right.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Do mushrooms need complete darkness to grow?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>No. Mushrooms can and will grow in darkness, but some indirect light is beneficial for proper cap development and orientation. They naturally grow toward light sources, so a completely dark environment may result in mushrooms growing in odd directions. Some ambient light (even household lighting) is preferable, though not required.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What are "pins" and when will I see them?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Pins are the first visible stage of mushroom development — tiny primordia that look like small bumps or knots on the substrate surface. These appear once conditions trigger fruiting (humidity, fresh air, temperature stability). Pins typically appear 3-10 days after you initiate air exchange with indirect sunlight, depending on strain and conditions.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How long does it take from pinning to harvest?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Once pins form, mushrooms typically reach harvest maturity in 5-14 days, depending on strain and environmental conditions. Some fast-growing strains finish in 4-5 days; slower strains may take 2-3 weeks. Warmer temperatures and higher humidity generally speed up development. Monitor your mushrooms closely during this phase — the window between optimal and over-mature can be just a few days.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Why are my mushrooms so small?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Small mushrooms usually indicate: (1) insufficient humidity during development, (2) inadequate fresh air exchange, (3) temperature stress, (4) kit was over-harvested in previous flushes, or (5) substrate is becoming depleted. If humidity and air exchange are adequate, size variation is normal — some mushrooms naturally develop smaller than others. Smaller mushrooms are still potent and flavorful; don't discard them.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Why are my mushrooms thin and stringy with long stems?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>This is called "leggy" growth and indicates insufficient fresh air exchange and/or high CO2 levels. The mushroom is stretching toward fresh air. Solution: increase fanning frequency to 3-4 times daily, improve room ventilation, or place the kit in a more open area. You can still harvest leggy mushrooms, but optimal conditions will produce fuller, more robust specimens in future flushes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What does a fully mature mushroom look like?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Maturity varies by strain, but generally: the cap is fully expanded, the underside shows developed gills (if applicable), and the cap edges may begin to flatten or curl upward slightly. Just before spore release (when the veil breaks or gills fully expose), the mushroom is at peak maturity. Harvest just before or at this moment for best quality and potency.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- HARVESTING -->
+      <div class="category-header">Harvesting</div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>When is the right time to harvest?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>The optimal harvest window is just before the mushroom releases spores — when the cap is fully expanded but hasn't yet flattened completely or begun to curl upward excessively. Look for the veil (thin membrane under the cap) beginning to break or separate from the stem. Harvest at this moment for peak quality. Waiting too long results in spore release, which is visible as brown dust and slightly reduces potency.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How do I harvest my mushrooms without damaging the kit?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Grasp the mushroom cluster at its base, as close to the substrate as possible, and twist firmly while pulling upward. The mushrooms should detach cleanly. Alternatively, use a clean, sharp knife to cut the cluster at the base. Either method works well if done carefully. Never yank violently or tear away material — this damages the mycelium and reduces yield on subsequent flushes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Should I twist, cut, or pull the mushrooms?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Either twisting or cutting works well. Twisting: Grasp the cluster base firmly and rotate while pulling — the mushrooms detach cleanly. Cutting: Use a sterile knife to cut the cluster flush with the substrate. Many growers prefer cutting as it's more controlled and less likely to damage the block. Both methods work; choose what feels most natural and controlled for you.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Can I pick individual mushrooms or should I harvest the whole cluster?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Harvest the entire cluster together when the largest mushrooms are at peak maturity. Picking individual mushrooms and leaving others can confuse the mycelium's fruiting signals and reduce yields on subsequent flushes. Always wait until the majority of the cluster is ready, then harvest the whole flush at once. This maintains optimal substrate conditions for future flushes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What happens if I harvest too early?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Early-harvested mushrooms are smaller and less developed, resulting in lower yield per flush. They're still edible and potent, but you're leaving growth on the table. The mushroom caps won't fully expand, and you may see immature gills or surface features. Practice helps you dial in the perfect timing — early harvest is better than too-late in terms of contamination risk.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What happens if I harvest too late?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Late harvest means the mushroom has released spores (visible as brown powder on the cap and surrounding surfaces). Spore release triggers a hormonal shift in the mycelium toward colonization rather than fruiting, which can prevent or delay subsequent flushes. Late-harvested mushrooms may also be slightly less potent, as the organism has already begun spore maturation. However, they're still perfectly usable.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Will spore release hurt my mushrooms or kit?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Spore release itself doesn't damage mushrooms — they're still edible and usable. However, it signals the end of that fruiting cycle and may prevent subsequent flushes from occurring or delay them significantly. Brown spore dust is messy and can contaminate your growing space. For optimal yields and multiple flushes, harvest just before spore release.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How much can I expect to harvest?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>ShroomBloom kits are engineered for massive, multi-flush yields. First flush typically yields 1-4+ pounds of fresh mushrooms (compared to 0.5-2 lbs with standard kits), depending on strain and growing conditions. The proprietary grain blend and BloomBoost nutrient formula support heavy, consecutive harvests. Second and third flushes typically produce 50-75% of the first harvest. Most growers achieve 2-4+ pounds total from a single 4LB kit across multiple flushes. The engineering focuses on pounds, not ounces — you harvest quantity. Exact yields depend on your strain selection and how well you maintain optimal conditions.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTAMINATION & MOLD -->
+      <div class="category-header">Contamination & Mold</div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What does mold contamination look like?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Contaminating molds appear as distinct patches of color: green (most common), black, blue, orange, or pink. These are sharply different from the white mycelium. Green mold (Trichoderma) is the most common and appears as fuzzy emerald patches that rapidly expand. Black mold appears as dark patches or spots. Any visible color that's not white (beyond normal mycelium browning) is likely contamination.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How do I tell the difference between healthy mycelium and mold?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Healthy mycelium: white, rope-like, uniform, dense. May show slight browning or yellowing (metabolites). Contaminating mold: distinct colors (green, black, blue, orange, pink), often fuzzy or powdery appearance, rapid expansion, musty odor. If you see clear color patches distinctly different from white, it's contamination. Healthy mycelium has an earthy, neutral smell. Contaminated kits often smell musty or off.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What is cobweb mold and how serious is it?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Cobweb mold is gray/white and grows rapidly in a web-like pattern, covering mushrooms and substrate with a fluffy coating. It's serious because it grows very fast and can destroy a crop within days. Unlike some green molds, cobweb is difficult for mushroom mycelium to overcome. If you suspect cobweb, isolate the kit immediately and consider it high-priority to address or discard.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What is green mold (Trichoderma) and can I save my kit?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Trichoderma is the most common contamination — appears as emerald-green fuzzy patches. If detected early (first 1-2 weeks, small patches covering &lt;10% of substrate), you may save the kit: increase fresh air exchange, reduce humidity temporarily, and monitor closely. The mushroom mycelium may out-compete the green mold. If green mold covers &gt;10% of the substrate or continues spreading despite intervention, discard the kit.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What causes contamination?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Contamination sources include: (1) spores in the air (present everywhere), (2) poor hygiene (touching kit with dirty hands), (3) non-sterile tools or surfaces, (4) excessive humidity combined with poor air exchange, (5) temperature stress, (6) overly wet substrate, or (7) contamination present in the kit before shipment (rare). Prevention focuses on hygiene, adequate ventilation, and maintaining proper humidity without waterlogging.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Can I eat mushrooms that have mold on them?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>No. If your mushrooms or kit show visible mold contamination, discard them. Some molds produce toxins harmful to humans. Even non-toxic molds compromise mushroom quality. If contamination is only on the kit substrate but mushrooms themselves are clean, you can attempt to harvest clean mushrooms and discard the rest, but this is risky. When in doubt, discard the entire kit.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>If I see mold, can I still save the kit?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Depends on severity and type. Small green mold patches (early detection, &lt;10% coverage) may be manageable: isolate the kit, increase ventilation drastically, reduce humidity, and monitor. If mushrooms are already fruiting, you can attempt to harvest any clean mushrooms immediately. Black mold, pink mold, or cobweb should be discarded immediately — these are difficult to overcome. If mold reappears after intervention, discard. Reach out to us directly or take a look at our mold guide on how to use hydrogen peroxide to potentially remove small mold patches.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How do I prevent contamination?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Best practices: (1) Work with clean hands, (2) Don't touch the substrate unless necessary, (3) Use clean tools if you must handle the kit, (4) Maintain 80-95% humidity but ensure adequate air exchange to prevent stagnant moisture, (5) Keep the growing area relatively clean and dust-free, (6) Avoid placing kits in enclosed spaces without airflow, (7) Don't over-mist to the point of waterlogging. Most contamination is preventable through good hygiene and environmental management.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Should I discard my kit if it's contaminated?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>It depends. Small, early-stage contamination (&lt;10% coverage, early detection) may be salvageable with intervention. (see our contamination guide) Larger contamination, rapidly spreading mold, or toxic-looking molds (black, pink, cobweb) should be discarded immediately. If you're uncertain, erring on the side of caution and discarding is safer. Contaminated kits that you attempt to save may result in failed flushes or continued contamination issues.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What's the smell of a contaminated kit?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Healthy kits have a mild, earthy, mushroom-like smell. Contaminated kits often develop a musty, sour, or unpleasant odor — sometimes described as "off" or "rotten." If your kit smells bad (distinctly different from earthy), investigate visually for contamination. Strong musty odors often indicate bacterial or heavy mold contamination.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Is that white fuzzy stuff contamination or normal mycelium?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Almost certainly normal mycelium. Healthy mycelium can appear quite fuzzy or dense, especially when active. Key distinction: healthy mycelium is white and uniform. Contaminating molds show distinct color (green, black, blue, orange, pink). If it's pure white and smells earthy, it's mycelium. If it's a different color, it's contamination.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What are the brown/dark patches on my kit?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Brown or dark patches are usually metabolites (byproducts of mycelium activity) — completely normal and healthy. They indicate active mycelium fighting off potential contaminants and breaking down substrate. As long as these patches are brown/tan (not green, black, or brightly colored), they're not contamination. Some bruising (purple-blue discoloration from handling) is also normal.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MULTIPLE FLUSHES -->
+      <div class="category-header">Multiple Flushes</div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Can I get multiple flushes from one kit?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Yes. Most kits produce a minimum of 2 flushes, with many producing 3-4 flushes or more with proper care. Each flush typically produces fewer mushrooms than the previous one as the substrate becomes depleted, but multiple harvests are standard. The substrate contains enough nutrients to support several fruiting cycles.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How many flushes can I get?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Typically 2-3 flushes from a single kit, depending on strain, care, and environmental conditions. Some growers report 3+ flushes with exceptional technique, but 2 flushes is a realistic target. Each flush produces fewer mushrooms than the last. Once production becomes minimal (very few small mushrooms) or contamination becomes persistent, the kit is spent and best disposed of or composted.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Do I need to do anything special to prepare for a second flush?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>After harvesting all mushrooms from the first flush, allow 7-14 days of rest. Start misting lightly to maintain and build up some moisture. Around day 7-14, you should see pinning begin again. Some growers prefer a more structured approach: store the kit in a cool place for a few days, then rehydrate by soaking or increasing misting frequency. Consistency is key — maintain humidity and fresh air exchange throughout.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What's the "soak" or "dunk" method for getting more flushes?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Soaking (dunking) rehydrates the substrate between flushes, triggering renewed fruiting. Method: After harvesting, place the substrate block in a bowl or tub of clean, cool water and let it soak for 12 hours (submerged). Then remove, drain excess water (place on a rack or paper towels), and return to your fruiting setup. This resets hydration and often triggers robust pinning within a week.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How long should I soak my kit between flushes?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Most substrates benefit from 12 hours of soaking. Shorter soaks (12 hours) are safer if you're concerned about over-hydration. Longer soaks (up to 24 hours) provide thorough rehydration but increase waterlogging risk if drainage isn't good so we dont usually recommend 24 hours. After soaking, allow excess water to drain completely before returning to the fruiting environment. Drain for at least 2-4 hours.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Why is my second flush smaller than my first?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>This is completely normal. The substrate has depleted some of its nutrients during the first flush. Second flushes typically produce 50-75% of the first harvest. Third flushes are smaller still. This pattern is expected and inevitable — substrate has finite resources. The trade-off for multiple harvests is decreasing yields per flush. Focus on maintaining good conditions to maximize what the substrate can still produce.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Why am I not getting a second flush?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Common causes: (1) Spores were released from the first flush (mycelium shifted to colonization mode), (2) Substrate is contaminated, (3) Kit is stored in conditions too cold or too dry, (4) Insufficient fresh air exchange during rest period, (5) Substrate is completely depleted or degraded. If contamination is visible, discard. Otherwise, ensure humidity is maintained at 80-90% and fresh air exchange continues even during rest periods.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Should I flip the block over for the second flush?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Not necessary, but some growers do. If the second flush is slow to pin in the same location as the first, flipping the block (growing from the opposite side) can help by using substrate that wasn't exposed during the first flush. To do this: after harvest, flip the block and cut a new X-shaped slit on the opposite side. Only flip if the standard approach isn't working after 2+ weeks of rest.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How long between flushes?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Plan for 1-3 weeks between flushes. Most kits produce visible pinning 7-14 days after harvest, with mushrooms ready to pick another 5-10 days later. Total time between harvests is usually 2-3 weeks. Some fast strains may cycle faster; slower strains may take longer. Rest periods and soaking can accelerate the next flush.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Can I get a third flush?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Yes. Many growers successfully get 2-3 flushes, sometimes more. Third flushes are typically smaller and slower than second flushes. After the third harvest, substrate begins to degrade noticeably, and contamination risk increases. Some growers attempt fourth or fifth flushes with success, but by then yields are minimal and effort is high. Most view the kit as spent after 2-3 good flushes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>When should I stop trying for more flushes?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Stop when: (1) Contamination becomes visible and persistent, (2) Pinning is extremely slow (3+ weeks with no progress), (3) Mushroom yields drop to just a handful of tiny specimens, (4) Substrate appears degraded (broken down, slimy, discolored beyond normal metabolites), or (5) You're simply tired of the effort. There's no hard rule — it's your choice based on effort-to-yield ratio.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- STORAGE & PRESERVATION -->
+      <div class="category-header">Storage & Preservation</div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How should I store fresh harvested mushrooms?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Place fresh mushrooms in a paper bag (not plastic) and store in the refrigerator. Paper allows them to breathe and prevents moisture buildup. Fresh mushrooms keep well for 7-10 days refrigerated. Never use plastic bags or sealed containers, which trap moisture and cause rapid degradation. Check occasionally and remove any that show signs of spoilage.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Can I store mushrooms in plastic containers?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Not ideal. Plastic traps moisture and accelerates degradation. Mushrooms quickly become slimy and spoil. Use paper bags instead. If you must use plastic, ensure it's vented (holes punched throughout) and monitor closely. Paper is always the better choice for fresh storage.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How long do fresh mushrooms stay good in the fridge?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>7-10 days in the refrigerator, stored in a paper bag. Quality gradually declines — they may become slightly softer or show minor discoloration after 5-7 days. For best quality and flavor, use within 3-5 days. Check regularly for spoilage (slime, mold, strong odors). Some variation is normal; slight browning is not a sign of spoilage.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Can I dry my mushrooms?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Yes. Drying is an excellent way to preserve mushrooms long-term. Methods include: food dehydrator (set to 110-130°F, 8-24 hours depending on size), oven on lowest setting with door cracked open, or air-drying in a warm, dry, well-ventilated space (2-7 days). Dried mushrooms are shelf-stable for months when stored in airtight containers in a cool, dry place.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How do I dry mushrooms properly?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Food dehydrator (preferred): Set to 110-120°F. Keep mushrooms in tact as much as possible. Arrange on trays without overlapping, and dry for 8-24 hours until completely dry (no moisture when bent). Oven method: Set to lowest temperature (usually 150-170°F), place mushrooms on a rack, crack the door open, and check every 2-3 hours until fully dry. Storage: Place dried mushrooms in airtight jars or vacuum-seal bags in a cool, dark location.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What's the best way to cook fresh mushrooms?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Sautéing in butter or olive oil over medium-high heat is classic and delicious. Clean mushrooms gently, slice if large, and cook 4-6 minutes until golden and tender. Fresh mushrooms are also excellent in soups, stews, pasta, stir-fries, or simply grilled. They cook down significantly as they release water, so don't be afraid to use plenty. Season with salt, pepper, and garlic for optimal flavor.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Can I freeze mushrooms?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Yes, though texture changes after thawing. Fresh mushrooms can be frozen raw or blanched first (briefly boiled, then cooled). Place on a tray to freeze individually, then transfer to freezer bags. Frozen mushrooms work well in cooked dishes (soups, stews, sautés) but are mushy if eaten raw after thawing. Best used within 3 months. Drying is often preferable to freezing for long-term storage.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What do I do with the spent kit after I'm done?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Excellent options: (1) Compost it outdoors — the spent substrate is nutrient-rich compost and will often produce additional mushrooms as it breaks down in garden soil, (2) Use as mulch in garden beds, (3) Bury in your garden where mushrooms may continue to fruit seasonally. Never throw away — spent kits are valuable organic material. Place in compost or garden and let nature finish the job.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Can I compost the kit?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Absolutely. Spent substrate makes excellent compost. The kit will break down over weeks to months in compost piles, returning nutrients to your compost. The plastic bag can be composted if it's certified compostable; otherwise, remove the substrate and compost the material separately, discarding the plastic bag in regular trash. Many growers report continued mushroom production from spent kits buried in gardens.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROBLEMS & TROUBLESHOOTING -->
+      <div class="category-header">Problems & Troubleshooting</div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Why are there tiny mushrooms growing inside the bag?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>These are premature pins that form without adequate fresh air exchange or before you've created the fruiting site (the X-cut). They'll likely abort (shrivel) because they don't have enough airflow or proper conditions. You can ignore them or gently break them off. This commonly happens during shipping. Once you create the proper fruiting site with the X-cut and provide fresh air, proper pins will form there instead.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Why are my mushrooms deformed or misshapen?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Deformations typically result from: (1) Uneven humidity or hydration, (2) Inadequate fresh air exchange, (3) Physical disturbance or damage during development, (4) Extreme temperature fluctuation, or (5) Very early-stage contamination. Most deformed mushrooms are still usable, though they may be less attractive. Improving environmental consistency (steady humidity, regular fresh air, stable temperature) prevents deformations in future flushes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What are "aborts" and why are they happening?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Aborts are pins or small mushrooms that start developing but then shrivel and stop growing. Causes include: (1) Humidity dropping too low mid-development, (2) Temperature stress or fluctuation, (3) Insufficient fresh air exchange, (4) Physical damage to the pin, or (5) Substrate stress. Remove aborted pins and continue with the flush — healthy mushrooms may still develop. Aborts indicate environmental issues to address for the next flush.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Why are my mushrooms turning brown or yellow?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Light browning or yellowing during development is usually normal and harmless. Brown coloration can indicate metabolite activity or age. Excessive browning may suggest: (1) substrate oxidation (exposure to excess oxygen/light), (2) over-misting, (3) slow development in suboptimal conditions, or (4) contamination. As long as there's no distinct mold color (green, black, orange, pink), brown/yellow tones are typically fine.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What does "metabolites" (mushroom pee) mean?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Metabolites are compounds secreted by active mycelium — byproducts of their metabolism and their natural defense against contaminants. These appear as liquid (clear or slightly cloudy), brown spots, or yellowing on the substrate. They indicate healthy, active mycelium. Metabolites contain beneficial compounds with antimicrobial properties. Don't remove or worry about them — they're a sign your kit is working well.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Will I need to spray or mist my kit constantly?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>No spraying required. This is one of ShroomBloom's biggest advantages over traditional kits. Your grow bag is a self-regulating microclimate — the 0.2-micron filter and sealed chamber maintain optimal humidity throughout the grow cycle without any intervention. Just inoculate, seal, and place on a shelf. The bag does the work. Unlike traditional kits that need 2-4 daily misting sessions, ShroomBloom handles moisture management automatically. This means you can set it and forget it — perfect for busy growers or beginners who don't want to babysit their kit. The professional-grade filtration ensures gas exchange and humidity balance without manual effort. Now, once you kick off the fruiting process, spraying may become necessary but it not required. It mostly depends on the environment that you are in. Reach out anytime if you have any questions and we are happy to help guide you.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Why is that liquid in my bag normal?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Yes. Liquid pooling in the bag is normal and indicates active mycelium. This is metabolite liquid or condensation from the humid environment. Don't drain it or open the bag to remove it. If excessive liquid accumulates (waterlogged substrate, slimy to the touch), improve air exchange and reduce misting frequency. Light pooling is fine; heavy waterlogging needs addressing.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Why are my mushrooms soggy or slimy?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Sogginess indicates over-hydration: the substrate or mushrooms themselves are too wet. Causes: (1) Over-misting, (2) Insufficient air exchange (moisture can't evaporate), (3) Very high humidity without ventilation, or (4) possible early contamination. Reduce misting frequency, increase fresh air exchange, and allow the kit to dry out slightly. If sliminess persists despite these changes, contamination may be present.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Why are my mushrooms drying out before fully grown?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Mushrooms are drying out mid-development, indicating insufficient humidity during fruiting. Causes: (1) Humidity below 80%, (2) Direct air circulation drying them out, (3) Low ambient humidity in your growing space, or (4) Inconsistent misting. Solution: increase misting frequency (typically 2-4 times daily), use a humidity tent, or increase ambient humidity with a humidifier. Keep humidity steady at 80-95% during fruiting.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What if caps are curling excessively?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Excessive cap curling often indicates stress: (1) High CO2 (inadequate fresh air exchange), (2) Low humidity (drying caps), (3) Temperature stress, or (4) Physical damage during development. If curling is mild, it's often just normal variation. If severe, check and adjust environmental conditions. Mushrooms with moderately curled caps are still perfectly usable, though appearance is less ideal.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Why are mushrooms fruiting under the plastic bag?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>This happens when the X-cut slit isn't clearly signaling to the mycelium where to fruit, so it fruits randomly throughout the bag. This is common during shipping or if the slit is too small. Solution: Ensure the X-cut is prominent and open; the mycelium should clearly see an opening. Remove any premature pins under the bag. Next flush: make sure the fruiting slit is obvious and open.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How do I fix slow or stalled growth?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>First, verify conditions: humidity should be 80-95%, temperature 60-75°F, and fresh air exchange adequate (fan daily). If environmental conditions are good, growth may simply be slow (some strains are slower). If stalled completely (no growth for 2+ weeks despite good conditions), try: (1) increasing fresh air exchange, (2) raising temperature 5°F, (3) increasing humidity if below 80%, or (4) soaking the kit for 12-24 hours to rehydrate.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>My substrate looks dry after my first flush - should I soak it?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>If the substrate feels dry and you're not seeing active mycelium or fruiting, a soak can help. Place the block in water for 12 hours (ideally between flushes or before fruiting). However, regular misting should maintain your kit fairly well. If it keeps drying despite regular misting, increase misting frequency or improve ambient humidity. Soaking is most useful between flushes, not during active fruiting.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>The plastic bag is torn - is that a problem?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>A small tear is usually not a problem — it's actually extra fresh air exchange. Many growers intentionally make small holes in the bag (though we often dont recommend this for sterility). If the tear is very large or the substrate is exposed extensively, there's increased contamination risk. For a small tear, monitor closely for contamination (green, black, or unusual colors). You can continue growing; just keep an eye on the kit and harvest when ready.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SPECIES-SPECIFIC QUESTIONS -->
+      <div class="category-header">Species-Specific Questions</div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What mushroom strains are best for beginners?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>ShroomBloom works with all strains equally well — the kit does the heavy lifting regardless of what you grow. That said, oyster varieties (Pearl, Blue, Golden) are slightly more forgiving of any beginner mistakes. Lion's Mane is also excellent — hardy and reliable. However, with ShroomBloom's professional-grade filtration, proprietary grain blend, and guaranteed replacement, strain selection matters less. The kit is engineered to succeed with literally any viable culture you inoculate. First-time growers often start with whatever strain interests them most rather than worrying about "easier" vs "harder." The kit handles the variables. Choose what excites you — ShroomBloom will grow it.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Are oyster mushrooms easier to grow than shiitakes?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Yes. Oysters are faster, more forgiving, and require less precise environmental control. Shiitake is slower, prefers cooler temperatures, requires outdoor air for productive second flushes, and is generally less tolerant of mistakes. If you want the easiest route, oysters are the clear choice. Shiitake is worth learning after you've mastered oysters.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How do oyster mushrooms differ in care from lion's mane?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Oysters and Lion's Mane have similar care, but Lion's Mane is more sensitive to excess moisture — be careful not to over-mist or create waterlogging. Lion's Mane also grows more slowly and requires slightly more patience. Both prefer 65-75°F and 80-95% humidity. Oysters tolerate a wider range of conditions; Lion's Mane prefers more consistency.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Do different strains require different humidity levels?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Slightly. Most gourmet strains fruit best at 80-95% humidity, but some tolerate variations better than others. Oysters are very forgiving of humidity fluctuations. Shiitake and Lion's Mane prefer more consistent humidity. The general rule: 80-95% is optimal for all strains, but oysters can produce acceptably at 70-80% while Lion's Mane may struggle below 80%.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Do different strains have different temperature needs?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Yes. Most strains fruit between 55-75°F, but preferences vary. Oysters tolerate 50-80°F (very forgiving). Shiitake prefers 55-65°F (cooler). Lion's Mane does well at 60-70°F. Temperature strongly affects growth speed — warmer (within range) = faster growth; cooler = slower growth. Match your growing season to your strain's preferences: oysters year-round, shiitake in cooler months, Lion's Mane in moderate temps.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Why do some kits grow faster than others?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Speed differences are due to: (1) Strain genetics (oysters are fastest, shiitake slower), (2) Environmental conditions (warmer = faster, cooler = slower), (3) Humidity consistency (steady humidity = predictable timing), (4) Kit colonization level when shipped (fully colonized = faster fruiting), and (5) Individual kit vigor (some batches more vigorous than others). Most variations are normal — don't worry if timing varies by a few days.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOD SAFETY & NUTRITION -->
+      <div class="category-header">Food Safety & Nutrition</div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Are the mushrooms safe to eat?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Yes, assuming your kit is free from contamination. Never eat mushrooms from a kit showing visible green, black, blue, orange, or pink mold patches. Clean, uncontaminated mushrooms from your kit are completely safe to eat. Cook thoroughly (sautéing, boiling, etc.) is always recommended for any foraged or home-grown mushrooms. When in doubt about contamination, discard the entire kit.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Are they certified organic?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>This depends on your specific kit source. Many mushroom kits marketed as "organic" use organic substrate ingredients (hardwood sawdust, organic grains). Check your kit packaging or supplier website for certification status. Even non-certified kits are typically grown without synthetic pesticides or fertilizers — mushrooms are fungi and don't require typical agricultural inputs. Our kits, while not certified organic, are of the highest quality material that you can find. We source from local farms and agricultural feed who carry only the best materials for our kits.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Are your kits gluten free?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Yes. Our kits are completely gluten free. They are made with our proprietary blend of substrate using coco coir, vermiculite, and gypsum. Our grain is milo/sorghum based only — no wheat, barley, or other gluten-containing grains. If you have celiac disease or gluten sensitivity, ShroomBloom kits are safe for your cultivation needs.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Should I wash them before cooking?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Gently wipe fresh mushrooms with a damp cloth or soft brush to remove any substrate particles. Avoid soaking in water, which mushrooms absorb readily and become soggy. A quick rinse under running water is acceptable if there's visible debris. Dried mushrooms don't need washing. Most home growers simply wipe them clean and cook.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What are the health benefits of these mushrooms?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Edible mushrooms are nutrient-dense: high in B vitamins, minerals (copper, selenium, potassium), antioxidants, and beta-glucans (immune-supporting compounds). They're low-calorie, low-fat, and support cardiovascular and immune function. Different varieties have slightly different profiles — Lion's Mane is noted for cognitive support, oysters for general nutrition and antioxidants. Consult nutritional databases or your healthcare provider for specifics.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Can anyone eat them or are there restrictions?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Most people can eat edible mushrooms safely, but individuals with mushroom allergies should avoid them. Those with compromised immune systems should also cook mushrooms thoroughly. Pregnant women and nursing mothers should also cook thoroughly and consume in moderation as part of a balanced diet. When in doubt, consult a healthcare provider. As with any food, individual tolerance varies.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What if someone has a mushroom allergy?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>People with mushroom allergies should avoid eating these mushrooms. Allergic reactions can range from mild (itching, swelling in mouth) to severe. Growing mushrooms is still fine (spore inhalation is usually not an issue), but consumption is not recommended. Always disclose mushroom allergies when sharing food with others.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- GENERAL QUESTIONS -->
+      <div class="category-header">General Questions</div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How do I know if I'm doing it right?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Key signs of success: (1) Visible pinning 3-14 days after setup, (2) Mushrooms developing rapidly once pinning begins, (3) No visible contamination (green, black, colors), (4) Pleasant earthy smell, (5) Multiple flushes from a single kit. Follow the basic principles — maintain humidity 80-95%, provide fresh air exchange 2-4x daily, keep temperature 60-75°F — and you're likely doing well. Monitor and adjust as needed.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What's the success rate of these kits?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>ShroomBloom reports 95%+ first flush success rates when basic conditions are met (room temperature, normal humidity). This is also mostly dependent on your spore/culture source. Sourcing inadequate cultures will almost always lead to a failed bag or contaminated bag. If the bag is contaminated upon arrival, it is usually a bag issue. If you inject your culture and contamination immediately takes place within a few days, it is a culture issue. If you follow the simple setup and don't get a harvest, we replace the kit free — no questions asked. This is why we guarantee it. The professional-grade filtration, proprietary grain blend, and support team mean first-time growers succeed. The kit's self-regulating microclimate eliminates most user error. Second flush success is slightly lower (85%+) due to natural substrate depletion, but even that's engineered higher than industry standard. Honestly, if you're worried about failure, don't be — that's exactly why we have the replacement guarantee.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Is it worth the money?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Yes, for most growers. A single kit is the experience of growing mushrooms while also more often than not, growing mushrooms that are widely unavailable locally. This is the appeal of growing your own mushrooms using your own desired strain. Multiple flushes multiply this value. Beyond economics, many growers find cultivation rewarding as a hobby, educational activity, or sustainable food production. The investment is modest compared to other hobbies or food sourcing methods.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Can I use the kit as an educational tool for kids?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Absolutely. Mushroom kits are excellent for teaching biology, ecology, and patience. Kids love watching rapid growth and participating in harvesting. The 7-21 day timeline is ideal for school projects. Supervise misting and harvesting to ensure safety and proper technique. It's a hands-on, tangible way to learn about fungi and food production.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Why did my kit fail even though I followed instructions?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Common reasons despite following instructions: (1) Contamination (sometimes invisible until advanced stages), (2) Environmental conditions worse than expected (you can't measure humidity/temp without a meter), (3) Strain variation or weak kit vigor (occasionally happens), (4) Interpretation misunderstanding (misting frequency or intensity differs from expectation), or (5) Unexpected external factors (heating/cooling of your space, seasonal humidity changes). One failure is not uncommon — most growers succeed on attempts 2-3+.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Do I need any special knowledge to use this kit?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>No. Seriously. The entire point of ShroomBloom is removing the knowledge barrier. You literally need: clean hands, a syringe of culture, and the ability to read 5 simple steps. We've engineered out the complexity. No mycology knowledge. No experience needed. No tutorials required. The 0.2-micron filter, proprietary grain blend, and self-regulating microclimate handle the science. You handle the inoculation (which is just pressing a syringe). Everything else is automatic. First-time growers with zero mushroom experience succeed regularly. If something goes wrong, our expert support team is there. And if you don't get a harvest, we replace it free. You're literally zero risk to try.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What's the easiest variety to start with?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Oyster mushrooms (Pearl, Blue, or Golden varieties) are the easiest. They're forgiving of beginner mistakes, grow quickly, and are prolific producers. If you're a complete beginner, start with oysters. Master the basics, then explore other varieties like Lion's Mane or Shiitake if desired. Of the more exotic cultures, while we cannot condone any illegal growing practices, we often recommend for mycology testing purposes: Golden Teacher, B+, and other easy-to-grow cubensis strains.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>Can I grow mushrooms year-round?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Yes. These kits are designed to grow most mushroom types year round, although seasonality can help improve success rate. Oyster varieties fruit well year-round at room temperature. Shiitake is easier in cooler months (fall, winter, spring). Lion's Mane does well in moderate seasons. By rotating varieties, you can produce mushrooms continuously. Alternatively, focus on one variety in its ideal season for easiest results. Indoor growing provides more climate control than outdoor growing, enabling year-round production.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Still have questions? <a href="https://qr1.be/WP4KB9" target="_blank">Contact us</a> or join our <a href="https://discord.gg/McgDx4DV" target="_blank">Growing Community</a></p>
+      <p style="margin-top: 1rem; font-size: 0.8rem;">Happy growing! 🍄</p>
+    </div>
+  </div>
+
+  <script>
+    function toggleFAQ(element) {
+      const question = element;
+      const answer = element.nextElementSibling;
+
+      // Close other open FAQs
+      document.querySelectorAll('.faq-question').forEach(q => {
+        if (q !== question) {
+          q.classList.remove('active');
+          q.nextElementSibling.classList.remove('active');
+        }
+      });
+
+      // Toggle current FAQ
+      question.classList.toggle('active');
+      answer.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
