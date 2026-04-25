@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShroomBloom - Your Grow Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      background: #0a0a0a;
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 100%);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo {
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo img {
+      max-width: 100%;
+      height: auto;
+      width: 90%;
+      filter: drop-shadow(0 0 10px rgba(233, 30, 140, 0.1));
+    }
+
+    .tagline {
+      color: #aaaaaa;
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 700px) {
+      .options {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .option-card {
+      position: relative;
+      padding: 2rem 1.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 2.5px solid #E91E8C;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: slideUp 0.6s ease 0.1s both;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .option-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: #AAFF00;
+      box-shadow: 0 0 20px rgba(170, 255, 0, 0.4);
+      transform: translateY(-4px);
+    }
+
+    .option-card:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .option-card:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .option-card:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    .option-card:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+
+    .option-card:nth-child(6) {
+      animation-delay: 0.6s;
+    }
+
+    .option-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .option-card.video .option-icon {
+      background: rgba(233, 30, 140, 0.15);
+      border-radius: 8px;
+    }
+
+    .option-card.video {
+      border-color: #AAFF00;
+      box-shadow: 0 0 15px rgba(170, 255, 0, 0.3);
+    }
+
+    .option-card.video:hover {
+      border-color: #C8FF33;
+      box-shadow: 0 0 20px rgba(170, 255, 0, 0.5);
+    }
+
+    .option-card.community .option-icon {
+      background: rgba(170, 255, 0, 0.15);
+      border-radius: 8px;
+    }
+
+    .option-card.faq .option-icon {
+      background: rgba(233, 30, 140, 0.15);
+      border-radius: 8px;
+    }
+
+    .option-card.contact .option-icon {
+      background: rgba(170, 255, 0, 0.15);
+      border-radius: 8px;
+    }
+
+    .option-card.downloads .option-icon {
+      background: rgba(170, 255, 0, 0.15);
+      border-radius: 8px;
+    }
+
+    .option-card.partners .option-icon {
+      background: rgba(233, 30, 140, 0.15);
+      border-radius: 8px;
+    }
+
+    .option-card.quickstart .option-icon {
+      background: rgba(170, 255, 0, 0.15);
+      border-radius: 8px;
+    }
+
+    .option-card:hover .option-icon {
+      transform: scale(1.1);
+    }
+
+    .option-title {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .option-description {
+      font-size: 0.9rem;
+      color: #999999;
+      line-height: 1.5;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      text-align: center;
+      color: #666666;
+      font-size: 0.85rem;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #1a1a1a;
+      border: 1px solid rgba(233, 30, 140, 0.3);
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 400px;
+      text-align: center;
+      animation: slideUp 0.3s ease;
+    }
+
+    .modal h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #E91E8C, #AAFF00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .modal p {
+      color: #999999;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .community-options {
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+    }
+
+    .community-btn {
+      padding: 1rem;
+      border: 1px solid rgba(233, 30, 140, 0.3);
+      background: rgba(255, 255, 255, 0.03);
+      color: #ffffff;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      font-weight: 500;
+      display: inline-block;
+    }
+
+    .community-btn:hover {
+      background: rgba(170, 255, 0, 0.15);
+      border-color: #AAFF00;
+      color: #AAFF00;
+    }
+
+    .downloads-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      text-align: left;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .download-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(170, 255, 0, 0.2);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .download-item:hover {
+      background: rgba(170, 255, 0, 0.1);
+      border-color: #AAFF00;
+    }
+
+    .download-name {
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .download-link {
+      padding: 0.5rem 1rem;
+      background: #E91E8C;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .download-link:hover {
+      background: #AAFF00;
+      color: #0a0a0a;
+    }
+
+    .close-modal {
+      background: transparent;
+      border: none;
+      color: #999999;
+      font-size: 1.5rem;
+      cursor: pointer;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    .close-modal:hover {
+      color: #E91E8C;
+    }
+
+    .attention-container {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(-100%, -50%);
+      margin-left: -80px;
+      pointer-events: none;
+      z-index: 100;
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .attention-arrow {
+      width: 0;
+      height: 0;
+      border-top: 25px solid transparent;
+      border-bottom: 25px solid transparent;
+      border-left: 40px solid #ffffff;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+      animation: bounce 2s infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .attention-text {
+      text-align: center;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      line-height: 1.3;
+      text-shadow: 
+        0 0 10px rgba(170, 255, 0, 0.8),
+        0 0 20px rgba(233, 30, 140, 0.6),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
+      animation: glow 2s ease-in-out infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        text-shadow: 
+          0 0 10px rgba(170, 255, 0, 0.8),
+          0 0 20px rgba(233, 30, 140, 0.6),
+          2px 2px 4px rgba(0, 0, 0, 0.8);
+      }
+      50% {
+        text-shadow: 
+          0 0 15px rgba(170, 255, 0, 1),
+          0 0 30px rgba(233, 30, 140, 0.8),
+          2px 2px 4px rgba(0, 0, 0, 0.8);
+      }
+    }
+
+    @media (max-width: 699px) {
+      .attention-container {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <img src="https://raw.githubusercontent.com/livekyn/shroombloom-logo/main/SB-Logo.png" alt="ShroomBloom Logo" style="max-width: 100%; height: auto; width: 90%;">
+      </div>
+      <div class="tagline">Welcome to your grow journey</div>
+    </div>
+
+    <div class="options">
+      <a href="https://drive.google.com/file/d/1SRh4r72HB8lh1A9UdnCciocMyeyMTWmk/view?usp=drive_link" class="option-card video" target="_blank">
+        <div class="option-icon">
+          <svg viewBox="0 0 24 24" style="width: 28px; height: 28px; fill: #E91E8C;">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+        <div class="option-title">Video Grow Guide</div>
+        <div class="option-description">Step-by-step walkthrough</div>
+      </a>
+
+      <a href="quick-start.html" class="option-card quickstart">
+        <div class="option-icon">
+          <svg viewBox="0 0 24 24" style="width: 28px; height: 28px; fill: #AAFF00;">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+        </div>
+        <div class="option-title">Quick Start</div>
+        <div class="option-description">Get growing in 6 weeks</div>
+      </a>
+
+      <button class="option-card community" id="communityBtn">
+        <div class="attention-container">
+          <div class="attention-arrow"></div>
+          <div class="attention-text">Join Our Growing Community<br>For 24/7 Growing Support</div>
+        </div>
+        <div class="option-icon">
+          <svg viewBox="0 0 24 24" style="width: 28px; height: 28px; fill: #AAFF00;">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/>
+          </svg>
+        </div>
+        <div class="option-title">Growing Community</div>
+        <div class="option-description">Connect with other growers</div>
+      </button>
+
+      <a href="faq.html" class="option-card faq">
+        <div class="option-icon">
+          <svg viewBox="0 0 24 24" style="width: 28px; height: 28px; fill: #E91E8C;">
+            <path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/>
+          </svg>
+        </div>
+        <div class="option-title">FAQ's</div>
+        <div class="option-description">Find answers to common questions</div>
+      </a>
+
+      <a href="https://qr1.be/WP4KB9" class="option-card contact" target="_blank">
+        <div class="option-icon">
+          <svg viewBox="0 0 24 24" style="width: 28px; height: 28px; fill: #AAFF00;">
+            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+          </svg>
+        </div>
+        <div class="option-title">Contact Us</div>
+        <div class="option-description">Get in touch with our team</div>
+      </a>
+
+      <a href="downloads.html" class="option-card downloads">
+        <div class="option-icon">
+          <svg viewBox="0 0 24 24" style="width: 28px; height: 28px; fill: #AAFF00;">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+          </svg>
+        </div>
+        <div class="option-title">Downloads</div>
+        <div class="option-description">Get guides and resources</div>
+      </a>
+
+      <a href="spore-partners.html" class="option-card partners">
+        <div class="option-icon">
+          <svg viewBox="0 0 24 24" style="width: 28px; height: 28px; fill: #E91E8C;">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+        </div>
+        <div class="option-title">Spore Partners</div>
+        <div class="option-description">Trusted spore vendors</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      Questions? Check the video guide or reach out to the community
+    </div>
+  </div>
+
+  <!-- Community Modal -->
+  <div class="modal" id="communityModal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal()">&times;</button>
+      <h2>Join The Community</h2>
+      <p>Pick your platform and connect with other ShroomBloom growers</p>
+      <div class="community-options">
+        <a href="https://discord.gg/hxuCG6jF" class="community-btn" target="_blank">
+          🎮 Join Discord
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const communityBtn = document.getElementById('communityBtn');
+    const communityModal = document.getElementById('communityModal');
+
+    communityBtn.addEventListener('click', () => {
+      communityModal.classList.add('active');
+    });
+
+    function closeModal() {
+      communityModal.classList.remove('active');
+    }
+
+    communityModal.addEventListener('click', (e) => {
+      if (e.target === communityModal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
